@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stuti Mehta Portfolio</title>
+  <!-- Bootstrap + FontAwesome + AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Google Fonts - Orbitron for a high-tech look, fallback Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      scroll-behavior: smooth;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      background: radial-gradient(ellipse 110% 70% at 70% 30%, #34043d 0%, #430482 100%), linear-gradient(130deg, #22004C 0%, #23024c 70%, #16132c 100%);
+      color: #f4f0ff;
+      letter-spacing: 0.03em;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width:10px; }
+    ::-webkit-scrollbar-thumb { background: #c1b1bdcc; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: #2c0f39; }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(25, 3, 32, 0.97);
+      box-shadow: 0 2px 20px #7e6aa0cc, 0 4px 42px #40238088;
+      font-family: 'Orbitron', 'Montserrat', 'Segoe UI', sans-serif;
+    }
+    .navbar-brand {
+      color: #d7c3ff !important;
+      letter-spacing: 0.18em;
+      font-weight: 800;
+      font-size: 1.34rem;
+      text-shadow: 0 0 10px #b49cffbb;
+    }
+    .navbar-brand img { max-height: 42px ;}
+    .navbar-nav .nav-link {
+      color: #cecaff !important;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-left: 1.18rem;
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      font-size: 1.02rem;
+      letter-spacing: 1.3px;
+      transition: color 0.25s, text-shadow 0.3s;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+      color: #e7deff !important;
+      text-shadow: 0 0 14px #bcaaff99, 0 0 24px #e6e1ff22;
+      text-decoration: underline;
+    }
+    .resume-btn {
+      background: linear-gradient(90deg, #a488ff 20%, #4331c2 100%);
+      color: #27213a !important;
+      font-weight: 800;
+      padding: 0.28rem 1.05rem;
+      border-radius: 8px;
+      border: 1px solid #baaaff66;
+      box-shadow: 0 0 18px #a588fe64, 0 4px 20px #1f1747;
+      margin-right: 1rem;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .resume-btn:hover {
+      background: linear-gradient(90deg, #cdadfd 5%, #5948ff 95%);
+      color: #2a1949 !important;
+      box-shadow: 0 0 24px #9a72facc, 0 7px 30px #5a24dfbb;
+    }
+
+    /* Home/Hero */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(ellipse at 80% 20%, #580483 0%, #15092b 70%);
+      padding-top: 100px;
+      color: #eadfff;
+      text-shadow: 0 2px 22px #ab8fff11;
+    }
+    .hero-content h1 {
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #e3d4ff;
+      letter-spacing: 0.1em;
+      line-height: 1.08;
+      text-transform: uppercase;
+      filter: drop-shadow(0 0 18px #a88fd6);
+      text-align: left;
+    }
+    .hero-content .lead {
+      color: #dcbcff;
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      text-shadow: none;
+      max-width: 600px;
+    }
+    .btn-custom, .project-btn {
+      background: linear-gradient(95deg,#836fff 10%,#1d0841 80%);
+      color: #fff;
+      border: 2px solid #c0a9ff;
+      border-radius: 16px;
+      padding: 16px 36px;
+      font-weight: 800;
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      box-shadow: 0 0 24px #bb90ff45;
+      transition: background 0.28s, color 0.2s, box-shadow 0.3s, transform 0.22s;
+      margin-right: 0.5rem;
+    }
+    .btn-custom:hover, .project-btn:hover {
+      background: linear-gradient(95deg,#e1d7ff 5%,#5641ce 95%);
+      color: #290d55;
+      box-shadow: 0 0 36px #c8aaffac;
+      transform: scale(1.04) translateY(-2px);
+    }
+
+    .hover-zoom { transition: transform 0.42s; }
+    .hover-zoom:hover {
+      transform: scale(1.09);
+      filter: drop-shadow(0 0 18px #bda5ff);
+    }
+
+    section {
+      padding: 68px 0 38px;
+      z-index: 0;
+      position: relative;
+    }
+    .bg-dark-glass {
+      position: relative;
+      z-index: 0;
+    }
+    .glass-box {
+      background: rgba(40, 30, 70, 0.80);
+      border-radius: 18px;
+      box-shadow: 0 7px 32px #ab75ff61, 0 0 25px #6828d820;
+      border: 1.5px solid #d5c1fa36;
+      color: #e7e6ff;
+      padding: 32px;
+      backdrop-filter: blur(12px);
+      transition: box-shadow 0.28s, transform 0.32s;
+    }
+    .glass-box:hover {
+      box-shadow: 0 18px 45px #594be8c1, 0 0 50px #c09aff99;
+      transform: translateY(-4px) scale(1.011);
+    }
+
+    h2, h3, h4 {
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      color: #ede8ea;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 0 13px #c7b5fa5d;
+    }
+    h2 { font-size: 2.3rem; }
+    h3 { font-size: 1.8rem; }
+    h4 { font-size: 1.4rem; }
+
+    .about-section p {
+      color: #cfcffe;
+      font-size: 1.14rem;
+      max-width: 720px;
+      line-height: 1.7;
+      margin: 0 auto 1.2em;
+    }
+
+    /* Skill section */
+   .skill-category h4 {
+  border-bottom: 2.5px solid #b296ff;
+  display: inline-block;
+  padding-bottom: 11px;
+  margin-bottom: 30px; /* use only bottom margin here */
+  filter: drop-shadow(0 0 5px #991cff99);
+}
+.skill-category {
+  text-align: center;
+}
+
+
+
+    .skills-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 32px 24px;
+    }
+    .skill-icon {
+      border: 2px solid #ae90ec;
+      border-radius: 15px;
+      background: linear-gradient(120deg, #fdfdfd 100%, #ffffff 100%);
+      color: #ecd4ff;
+      height: 105px; width: 105px;
+      display: flex;
+      flex-direction: column; justify-content: center;
+      align-items: center; margin: 10px;
+      box-shadow: 0 0 13px #a287e438 inset;
+      transition: box-shadow 0.22s, transform 0.3s;
+      cursor: default;
+    }
+    .skill-icon:hover {
+      box-shadow: 0 0 28px #e5bdffb8, 0 0 25px #bf9bed60 inset;
+      transform: scale(1.09);
+    }
+    .skill-icon img {
+      max-width: 56px; max-height: 56px; margin-bottom: 10px;
+      filter: drop-shadow(0 0 6px #f0ecf362);
+    }
+    .skill-name {
+      font-weight: 700;
+      color: #3b1f64;
+      text-shadow: 0 0 4px #ab67fa5e;
+      font-size: 13.5px;
+    }
+
+    /* Projects */
+    .row.align-items-start {
+      background: #20144eab;
+      border-radius: 15px;
+      padding: 1.7rem 1.2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 0 24px #a082fd64;
+      transition: box-shadow 0.3s, background-color 0.3s;
+    }
+    .row.align-items-start:hover {
+      background: #291c59da;
+      box-shadow: 0 0 56px #9476eebc;
+    }
+    .col-md-4.text-center img.img-fluid.rounded.hover-zoom {
+      height: 220px;
+      width: 320px;
+      object-fit: cover;
+      border: 1.8px solid #ede0ff;
+      border-radius: 0.8rem;
+      margin: 0 auto;
+      display: block;
+      box-shadow: 0 0 22px #4b30be5e;
+      filter: drop-shadow(0 0 8px #ceb5fd);
+    }
+
+    /* Project tools */
+    .project-tools {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; padding: 0;
+    }
+    .project-tools .tool-icon {
+      background: #382d5f80;
+      border: 1.8px solid #ad83fd95;
+      border-radius: 10px;
+      padding: 7px 16px;
+      color: #ebdbfa;
+      font-weight: 600;
+      font-size: 13px;
+      display: flex; align-items: center; gap: 7px;
+      text-shadow: 0 0 2px #e0bffd;
+      user-select: none;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    .project-tools .tool-icon img {
+      width: 20px; height: 20px;
+      filter: drop-shadow(0 0 2px #ceb5fd);
+    }
+    .project-tools .tool-icon:hover {
+      box-shadow: 0 0 18px #ded1fd;
+      background: #5b46a7d4;
+    }
+
+    /* Contact Section */
+    #contact { margin-top: 100px; }
+    .contact-card {
+      background: radial-gradient(circle at 54% 60%, #301e65bb 45%, #151132 100%);
+      border: 2.2px solid #cdd9ff80;
+      color: #f6fbff;
+      box-shadow: 0 10px 28px #9481fe56;
+      border-radius: 22px;
+      padding: 34px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      backdrop-filter: blur(7px);
+      transition: box-shadow 0.3s, transform 0.3s, background 0.2s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 14px 41px #e6daf1a4;
+      transform: scale(1.09);
+      background: #4330a6b5;
+    }
+    .contact-icon i {
+      font-size: 36px;
+      color: #eedcff;
+      text-shadow: 0 0 14px #be9afd,0 0 8px #ffffff20;
+      transition: color 0.25s, transform 0.3s;
+    }
+    .contact-card:hover .contact-icon i {
+      color: #fff;
+      transform: scale(1.13);
+    }
+
+    /* Responsive stuff */
+    @media (max-width: 991.98px) {
+      .col-md-4.text-center img.img-fluid.rounded.hover-zoom {
+        width: 100%; height: auto;
+      }
+      .hero-content h1 { font-size: 2.1rem; }
+      .btn-custom, .project-btn { padding: 11px 18px; border-radius: 12px; }
+      .skill-icon { height: 88px; width: 88px; }
+    }
+    html, body {
+  /* ... */
+  font-family: 'Quicksand', 'Montserrat', 'Segoe UI', sans-serif;
+  /* or substitute: 'Nunito', 'Poppins', etc. */
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', 'Montserrat', 'Segoe UI', sans-serif;
+}
+
+
+h2::after, h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 8px auto 0;
+  background: linear-gradient(to right, #a98fff, #6a4ecb);
+  box-shadow: 0 0 6px #ab8fff;
+  border-radius: 20px;
+}
+.entry-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #e8dbff;
+  letter-spacing: 0.07em;
+  margin-bottom: 4px;
+  text-shadow: 0 0 6px #b695ff90;
+  filter: drop-shadow(0 0 2px #bb9efc66);
+  font-family: 'Orbitron', 'Montserrat', sans-serif;
+}
+.glass-about {
+  background: linear-gradient(135deg, rgba(77, 67, 119, 0.3), rgba(82, 8, 107, 0.45));
+  border-radius: 50px;
+  border: 1.5px solid rgba(130, 84, 221, 0.28);
+  box-shadow: 0 0 30px rgba(152, 127, 232, 0.25), 0 0 20px rgba(115, 83, 232, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #dfd6ff;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  text-shadow: 0 0 4px #2a165340;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.glass-about:hover {
+  box-shadow: 0 0 60px rgba(198, 175, 247, 0.5);
+}
+
+
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+  
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
+    <div class="container px-4 px-md-5">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+  <img src="images/logo.jpg" alt="Logo" width="60" height="60" class="rounded-circle" />
+  <span class="brand-name">STUTI MEHTA</span>
+</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <a class="nav-link resume-btn btn" href="resume.pdf" target="_blank">Download Resume</a>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="hero-section text-white">
+    <div class="container hero-content text-center">
+      <div class="row align-items-center">
+        <div class="col-md-7 text-md-start" data-aos="fade-right">
+          <h1>Hello!<br />I’m Stuti</h1>
+          <p class="lead" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+            A Business Analytics & AI enthusiast building elegant, data-driven solutions.
+          </p>
+          <a href="#about" class="btn btn-custom btn-lg mt-4">Discover My Story</a>
+        </div>
+        <div class="col-md-5 mt-4 mt-md-0 text-center" data-aos="fade-left">
+          <img src="images/hero.jpg" alt="Stuti Mehta" class="img-fluid rounded hover-zoom" style="max-height: 300px;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="bg-dark-glass" style="padding-top:98px; margin-top: -98px;">
+    <div class="container px-4 px-md-5">
+      <div class="text-center mb-6 mt-5" data-aos="fade-up">
+        <h2 class="fw-bold" data-aos="fade-up" data-aos-delay="100">Who Am I?</h2>
+        <div class="glass-about text-start p-4 p-md-5" data-aos="fade-up" data-aos-delay="150" style="max-width:880px; margin:auto;">
+  <p>Hey there! I’m Stuti—a Business Analytics and AI grad student at UT Dallas, but honestly, I see myself as more than just a numbers person. I get genuinely thrilled when I find patterns in messy datasets or when a dashboard finally brings complex information to life. But for me, analytics has always been about more than just crunching numbers; it’s about uncovering the real stories behind the data.</p>
+  <p>I love learning new things and diving into fresh experiences, whether that means mastering new tech tools or stepping up to organize events. What truly excites me is hearing about people’s journeys and what fuels their passions. Every person I meet has a unique story, and I deeply enjoy connecting, exchanging ideas, and sometimes simply listening.</p>
+  <p>Outside of building models or analyzing data trends, you’ll often find me trying things outside my comfort zone, volunteering, or participating in university activities. Curiosity is a fundamental part of who I am—it keeps me exploring, growing, and always seeking those moments when numbers meet human stories. So if you’re searching for someone as interested in people as she is in analytics, and who never says no to a good conversation or collaboration, let’s get in touch!</p>
+</div>
+
+      </div>
+      <!-- Education -->
+      <div class="mb-5 mt-5" data-aos="fade-up" data-aos-delay="100">
+    <h3 class="fw-bold text-center mb-4" data-aos="fade-up" data-aos-delay="100">Education</h3>
+        <div class="glass-box mb-5 mt-5 row align-items-center">
+          <div class="col-md-2 text-center">
+            <img src="images/utd-logo.png" alt="UT Dallas" class="img-fluid" style="max-height: 70px;">
+          </div>
+          <div class="col-md-10">
+            <h5 class="entry-heading">University of Texas at Dallas</h5>
+            <p style="font-weight:600;">MS in Business Analytics & Artificial Intelligence</p>
+            <p>Relevant Coursework: Data Visualization, Predictive Modeling, AI Strategy</p>
+          </div>
+        </div>
+        <div class="glass-box row align-items-center">
+          <div class="col-md-2 text-center">
+            <img src="images/indus-logo.png" alt="Indus University" class="img-fluid" style="max-height:70px;">
+          </div>
+          <div class="col-md-10">
+            <h5 class="entry-heading">Indus University</h5>
+
+            <p style="font-weight:600;">B.Tech in Computer Science and Engineering</p>
+            <p>Relevant Coursework: Machine Learning, DBMS, Cloud Computing</p>
+          </div>
+        </div>
+      </div>
+      <!-- Experience -->
+      <div class="mb-5" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="fw-bold text-center mb-4" data-aos="fade-up" data-aos-delay="300">Experience</h3>
+        <div class="glass-box row align-items-center mb-4">
+  <div class="col-md-2 text-center">
+    <img src="images/olive1-logo.jpeg" alt="Olive" class="img-fluid" style="max-height: 70px;">
+  </div>
+  <div class="col-md-10">
+    <h5 class="entry-heading">Olive Web Solutions – Data Analyst Intern</h5>
+    <ul style="font-weight:500; padding-left: 1.2rem; max-width: 680px; margin: 0;">
+      <li>Analyzed and cleaned large datasets in Excel using advanced functions (pivot tables, VLOOKUP, and charts) to uncover trends and support data-driven decision-making.</li>
+      <li>Performed SEO audits, conducted keyword research, and monitored website analytics using Google Analytics to optimize digital marketing strategies.</li>
+      <li>Created detailed performance reports with actionable insights to improve content visibility and website traffic.</li>
+      <li>Collaborated with marketing and content teams to enhance user engagement and drive business growth.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="glass-box row align-items-center mb-4">
+  <div class="col-md-2 text-center">
+    <img src="images/silicon-logo.jpeg" alt="Silicon IT Hub" class="img-fluid" style="max-height: 70px;">
+  </div>
+  <div class="col-md-10">
+        <h5 class="entry-heading">Silicon IT Hub – Business Analyst Intern</h5>
+    <ul style="font-weight:500; padding-left: 1.2rem; max-width: 680px; margin: 0;">
+      <li>Collaborated with cross-functional teams to deliver projects in e-commerce, cab booking, and real estate.</li>
+      <li>Gathered and documented client requirements; created comprehensive feature lists for admin, customer, and seller modules.</li>
+      <li>Designed user flow diagrams and interactive wireframes in Lucidchart to visualize and refine processes.</li>
+      <li>Prepared Statements of Work (SOWs) and coordinated communication between stakeholders, developers, and designers throughout the project lifecycle.</li>
+    </ul>
+  </div>
+</div>
+  <div class="text-center mt-5">
+        <a href="#skills" class="btn btn-custom btn-lg">Discover My Skills</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SKILLS -->
+  <section id="skills" class="bg-dark-glass" style="padding-top:95px; margin-top:-95px;">
+    <div class="container px-4 px-md-5">
+      <h2 class="text-center mb-5">My Skills</h2>
+      <div class="skill-category" data-aos="fade-up">
+        <h4 class="text-center mb-4 mt-3">Programming Languages</h4>
+        <div class="skills-row">
+          <div class="skill-icon"><img src="images/skills/c.png" alt="C"><div class="skill-name">C</div></div>
+          <div class="skill-icon"><img src="images/skills/c++.png" alt="C++"><div class="skill-name">C++</div></div>
+          <div class="skill-icon"><img src="images/skills/java.png" alt="Java"><div class="skill-name">Java</div></div>
+          <div class="skill-icon"><img src="images/skills/Javascript.png" alt="JavaScript"><div class="skill-name">JavaScript</div></div>
+        </div>
+        <div class="skills-row">
+          <div class="skill-icon"><img src="images/skills/html.png" alt="HTML"><div class="skill-name">HTML</div></div>
+          <div class="skill-icon"><img src="images/skills/css.png" alt="CSS"><div class="skill-name">CSS</div></div>
+          <div class="skill-icon"><img src="images/skills/R.png" alt="R"><div class="skill-name">R</div></div>
+          <div class="skill-icon"><img src="images/skills/python.png" alt="Python"><div class="skill-name">Python</div></div>
+        </div>
+      </div>
+      <div class="skill-category" data-aos="fade-up" data-aos-delay="110">
+        <h4 class="text-center mb-4 mt-5">Data Visualization</h4>
+        <div class="skills-row">
+          <div class="skill-icon"><img src="images/skills/powerbi.png" alt="Power BI"><div class="skill-name">Power BI</div></div>
+          <div class="skill-icon"><img src="images/skills/Tableau.png" alt="Tableau"><div class="skill-name">Tableau</div></div>
+          <div class="skill-icon"><img src="images/skills/advanced excel.jpg" alt="Advanced Excel"><div class="skill-name">Advanced Excel</div></div>
+        </div>
+      </div>
+      <div class="skill-category" data-aos="fade-up" data-aos-delay="160">
+        <h4 class="text-center mb-4 mt-5">Database and Querying</h4>
+        <div class="skills-row">
+          <div class="skill-icon"><img src="images/skills/sql.png" alt="SQL"><div class="skill-name">SQL</div></div>
+          <div class="skill-icon"><img src="images/skills/mysql.png" alt="MySQL"><div class="skill-name">MySQL</div></div>
+          <div class="skill-icon"><img src="images/skills/mongodb.png" alt="MongoDB"><div class="skill-name">MongoDB</div></div>
+        </div>
+      </div>
+      <div class="skill-category" data-aos="fade-up" data-aos-delay="210">
+         <h4 class="text-center mb-4 mt-5">Business Analysis and Project Tools</h4>
+
+        <div class="skills-row">
+          <div class="skill-icon"><img src="images/skills/jira.png" alt="JIRA"><div class="skill-name">JIRA</div></div>
+          <div class="skill-icon"><img src="images/skills/draw.io.png" alt="Draw.io"><div class="skill-name">Draw.io</div></div>
+          <div class="skill-icon"><img src="images/skills/lucidchart.png" alt="Lucidchart"><div class="skill-name">Lucid Chart</div></div>
+        </div>
+      </div>
+      <div class="text-center mb-4 mt-5">
+        <a href="#projects" class="btn btn-custom btn-lg">Discover My Projects</a>
+      </div>
+    </div>
+  </section>
+<!-- PROJECTS -->
+<section id="projects" class="glass-box my-5">
+  <div class="container px-4 px-md-5">
+    <h2 class="text-center">My Projects</h2>
+
+    <!-- Project 1 -->
+    <div class="row align-items-start mb-5">
+      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up">
+        <h3>Emotion Detection Using CNN</h3>
+        <p>This project develops a Convolutional Neural Network (CNN) to detect and classify human emotions from facial images. Using the FER-2013 dataset, the model identifies emotions such as happiness, sadness, anger, surprise, and others. The system leverages deep learning techniques and image processing tools to accurately recognize emotions from facial expressions, with potential applications in human-computer interaction, security, and healthcare.</p>
+        <a href="#" class="project-btn mt-auto">VIEW CODE</a>
+      </div>
+      <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+        <img src="images/projects/1.png" alt="Emotion Detection CNN Project" class="img-fluid rounded hover-zoom" />
+      </div>
+      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up" data-aos-delay="200">
+        <h5>Tools Used</h5>
+        <div class="project-tools mt-auto">
+          <div class="tool-icon"><img src="images/skills/python.png" alt="Python"/> Python</div>
+          <div class="tool-icon"><img src="images/skills/tensorflow.png" alt="TensorFlow"/> TensorFlow</div>
+          <div class="tool-icon"><img src="images/skills/keras.png" alt="Keras"/> Keras</div>
+          <div class="tool-icon"><img src="images/skills/opencv.png" alt="OpenCV"/> OpenCV</div>
+          <div class="tool-icon"><img src="images/skills/matplotlib.png" alt="Matplotlib"/> Matplotlib</div>
+          <div class="tool-icon"><img src="images/skills/html.png" alt="HTML"/> HTML</div>
+          <div class="tool-icon"><img src="images/skills/css.png" alt="CSS"/> CSS</div>
+          <div class="tool-icon"><img src="images/skills/javascript.png" alt="JavaScript"/> JavaScript</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="row align-items-start mb-5">
+      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up">
+        <h3>Plant Disease Detection with AI/ML</h3>
+        <p>This project uses Convolutional Neural Networks (CNN) to detect and classify diseases in plants by analyzing images of leaves. Leveraging the Plant Village dataset, the system helps agricultural professionals and farmers quickly diagnose plant diseases to enable timely treatment and prevent crop loss. It includes preprocessing steps and a web interface built with Flask for user-friendly disease identification.</p>
+        <a href="#" class="project-btn mt-auto">VIEW CODE</a>
+      </div>
+      <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+        <img src="images/projects/2.jpg" alt="Plant Disease Detection Project" class="img-fluid rounded hover-zoom" />
+      </div>
+      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up" data-aos-delay="200">
+        <h5>Tools Used</h5>
+        <div class="project-tools mt-auto">
+          <div class="tool-icon"><img src="images/skills/python.png" alt="Python"/> Python</div>
+          <div class="tool-icon"><img src="images/skills/tensorflow.png" alt="TensorFlow"/> TensorFlow</div>
+          <div class="tool-icon"><img src="images/skills/keras.png" alt="Keras"/> Keras</div>
+          <div class="tool-icon"><img src="images/skills/opencv.png" alt="OpenCV"/> OpenCV</div>
+          <div class="tool-icon"><img src="images/skills/flask.png" alt="Flask"/> Flask</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="row align-items-start mb-5">
+      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up">
+        <h3>Business Insights 360 – Power BI Dashboard for AtliQ Hardware</h3>
+        <p>Business Insights 360 is a comprehensive Power BI dashboard developed using sales data from AtliQ Hardware to provide a 360° view of business performance. This project transforms raw sales data into clear, actionable insights through interactive visualizations and custom KPIs. Key metrics such as total revenue, gross profit, year-over-year growth, monthly sales trends, top-performing products, and regional performance are tracked. The dashboard supports multiple stakeholders with finance, sales, marketing, supply chain, and executive views. By leveraging advanced data modeling, DAX calculations, and data transformation techniques, it empowers better decision-making across departments.</p>
+        <a href="#" class="project-btn mt-auto">VIEW CODE</a>
+      </div>
+      <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+        <img src="images/projects/3.png" alt="Business Insights 360 Power BI Project" class="img-fluid rounded hover-zoom" />
+      </div>
+      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up" data-aos-delay="200">
+        <h5>Tools Used</h5>
+        <div class="project-tools mt-auto">
+          <div class="tool-icon"><img src="images/skills/powerbi.png" alt="Power BI"/> Power BI</div>
+          <div class="tool-icon"><img src="images/skills/excel.png" alt="Excel"/> Excel</div>
+          <div class="tool-icon"><img src="images/skills/powerquery.png" alt="Power Query (M)"/> Power Query (M)</div>
+          <div class="tool-icon"><img src="images/skills/dax.png" alt="DAX"/> DAX</div>
+          <div class="tool-icon"><img src="images/skills/sql.png" alt="SQL"/> SQL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+      <div class="text-center mt-5">
+        <a href="#contact" class="btn btn-custom btn-lg">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="bg-dark-glass">
+    <div class="container py-5 px-4 px-md-5" data-aos="fade-up">
+      <h2 class="text-center mb-5">Let's Connect</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-2 col-4">
+          <a href="https://www.linkedin.com/in/stuti-mehta-459183225/" target="_blank" rel="noopener noreferrer">
+            <div class="contact-card" role="button">
+              <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2 col-4">
+          <a href="mailto:stuti.mehta1909@gmail.com">
+            <div class="contact-card" role="button">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2 col-4">
+          <a href="https://github.com/stutimehta19" target="_blank" rel="noopener noreferrer">
+            <div class="contact-card" role="button">
+              <div class="contact-icon"><i class="fab fa-github"></i></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2 col-4">
+          <a href="https://www.instagram.com/stuti_mehta19" target="_blank" rel="noopener noreferrer">
+            <div class="contact-card" role="button">
+              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-2 col-4">
+          <a href="https://x.com/SMehtasm19" target="_blank" rel="noopener noreferrer">
+            <div class="contact-card" role="button">
+              <div class="contact-icon"><i class="fab fa-x-twitter"></i></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({ duration: 900, offset: 80, once: true });
+    });
+  </script>
+</body>
+</html>
