@@ -1,385 +1,433 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stuti Mehta Portfolio</title>
-  <!-- Bootstrap + FontAwesome + AOS CSS -->
+  <title>Stuti Mehta | Portfolio</title>
+
+  <!-- Bootstrap + FontAwesome + AOS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <!-- Google Fonts - Orbitron for a high-tech look, fallback Montserrat -->
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
+    :root{
+      /* Attached palette */
+      --dark:#202221;      /* deep gray-green */
+      --teal:#14a6a8;      /* teal */
+      --sand:#D9B08C;      /* warm sand */
+      --peach:#ccbeb1;     /* peach */
+      --ice:#D1E8E2;       /* ice */
+      --white:#efe9e9;
+
+      /* UI */
+      --text: rgba(255,255,255,0.90);
+      --muted: rgba(255,255,255,0.74);
+      --card: rgba(44,53,49,0.60);
+      --border: rgba(209,232,226,0.18);
+      --shadow: 0 22px 70px rgba(0,0,0,0.45);
+      --shadowSoft: 0 18px 55px rgba(0,0,0,0.32);
+      --radius: 18px;
+    }
+
     html, body {
       min-height: 100%;
       margin: 0;
       scroll-behavior: smooth;
-      font-family: 'Montserrat', 'Segoe UI', sans-serif;
-      background: radial-gradient(ellipse 110% 70% at 70% 30%, #34043d 0%, #430482 100%), linear-gradient(130deg, #22004C 0%, #23024c 70%, #16132c 100%);
-      color: #f4f0ff;
-      letter-spacing: 0.03em;
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(1100px 620px at 70% 12%, rgba(10, 43, 43, 0.3) 0%, transparent 55%),
+        radial-gradient(900px 560px at 18% 86%, rgba(255,203,154,0.10) 0%, transparent 62%),
+        linear-gradient(140deg, #0f1413 0%, var(--dark) 48%, #0f1413 100%);
+      color: var(--text);
+      letter-spacing: 0.02em;
     }
+
     /* Scrollbar */
-    ::-webkit-scrollbar { width:10px; }
-    ::-webkit-scrollbar-thumb { background: #c1b1bdcc; border-radius: 10px; }
-    ::-webkit-scrollbar-track { background: #2c0f39; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-thumb { background: rgba(209,232,226,0.45); border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: rgba(18,24,22,0.95); }
+
+    section { padding: 82px 0 52px; position: relative; }
 
     /* Navbar */
-    .navbar {
-      background: rgba(25, 3, 32, 0.97);
-      box-shadow: 0 2px 20px #7e6aa0cc, 0 4px 42px #40238088;
-      font-family: 'Orbitron', 'Montserrat', 'Segoe UI', sans-serif;
+    .navbar{
+      background: rgba(15,20,19,0.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(209,232,226,0.10);
     }
-    .navbar-brand {
-      color: #d7c3ff !important;
+    .navbar-brand{
+      color: var(--ice) !important;
       letter-spacing: 0.18em;
       font-weight: 800;
-      font-size: 1.34rem;
-      text-shadow: 0 0 10px #b49cffbb;
+      font-size: 1.05rem;
+      text-transform: uppercase;
     }
-    .navbar-brand img { max-height: 42px ;}
-    .navbar-nav .nav-link {
-      color: #cecaff !important;
+    .navbar-nav .nav-link{
+      color: rgba(209,232,226,0.88) !important;
       font-weight: 700;
       text-transform: uppercase;
-      margin-left: 1.18rem;
-      font-family: 'Orbitron', 'Montserrat', sans-serif;
-      font-size: 1.02rem;
-      letter-spacing: 1.3px;
-      transition: color 0.25s, text-shadow 0.3s;
+      margin-left: 1rem;
+      font-size: 0.92rem;
+      letter-spacing: 1.1px;
+      transition: color .25s, text-shadow .25s;
     }
-    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-      color: #e7deff !important;
-      text-shadow: 0 0 14px #bcaaff99, 0 0 24px #e6e1ff22;
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active{
+      color: var(--white) !important;
+      text-shadow: 0 0 18px rgba(202, 234, 234, 0.55);
       text-decoration: underline;
     }
-    .resume-btn {
-      background: linear-gradient(90deg, #a488ff 20%, #4331c2 100%);
-      color: #27213a !important;
-      font-weight: 800;
-      padding: 0.28rem 1.05rem;
-      border-radius: 8px;
-      border: 1px solid #baaaff66;
-      box-shadow: 0 0 18px #a588fe64, 0 4px 20px #1f1747;
-      margin-right: 1rem;
-      transition: background 0.3s, box-shadow 0.3s;
+
+    /* Section header */
+    .section-head{
+      text-align:center;
+      margin-bottom: 36px;
     }
-    .resume-btn:hover {
-      background: linear-gradient(90deg, #cdadfd 5%, #5948ff 95%);
-      color: #2a1949 !important;
-      box-shadow: 0 0 24px #9a72facc, 0 7px 30px #5a24dfbb;
+    .section-head .kicker{
+      display:inline-block;
+      font-weight: 900;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      font-size: .82rem;
+      color: rgba(209,232,226,0.85);
+      border: 1px solid rgba(209,232,226,0.16);
+      background: rgba(44,53,49,0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+    .section-head h2{
+      margin-top: 16px;
+      font-size: 2.65rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      color: var(--white);
+      text-shadow: 0 22px 70px rgba(0,0,0,0.55);
+    }
+    .section-head h2 span{ color: var(--peach); }
+    .section-head p{
+      max-width: 860px;
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.65;
     }
 
-    /* Home/Hero */
-    .hero-section {
-      min-height: 200vh;
+    /* Glass cards */
+    .glass-box{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadowSoft);
+      border: 1px solid var(--border);
+      padding: 32px;
+      backdrop-filter: blur(16px);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .glass-box:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    /* Buttons (clickable only) + glow hover */
+    .btn-custom{
+      background: linear-gradient(90deg, rgba(231, 185, 105, 0.95) 0%, rgba(247, 127, 87, 0.85) 100%);
+      color: var(--white);
+      border: 1px solid rgba(209,232,226,0.18);
+      border-radius: 16px;
+      padding: 14px 30px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.30);
+      transition: transform .2s, box-shadow .25s, filter .25s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-custom:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow:
+        0 26px 70px rgba(0,0,0,0.55),
+        0 0 22px rgba(128, 3, 3, 0.55),
+        0 0 30px rgba(255,203,154,0.22);
+    }
+    .btn-outline-soft{
+      background: rgba(44,53,49,0.35);
+      color: var(--white);
+      border: 1px solid rgba(209,232,226,0.16);
+      box-shadow: none;
+    }
+    .btn-outline-soft:hover{
+      box-shadow:
+        0 20px 55px rgba(0,0,0,0.45),
+        0 0 18px rgba(209,232,226,0.25);
+    }
+
+    /* HERO */
+    .hero-section{
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      background: radial-gradient(ellipse at 80% 20%, #580483 0%, #15092b 70%);
-      padding-top: 100px;
-      color: #eadfff;
-      text-shadow: 0 2px 22px #ab8fff11;
+      padding-top: 115px;
+      background:
+        radial-gradient(900px 520px at 70% 20%, rgba(17,100,102,0.30) 0%, transparent 58%),
+        radial-gradient(900px 520px at 28% 82%, rgba(255,203,154,0.10) 0%, transparent 60%);
     }
-    .hero-content h1 {
-      font-family: 'Orbitron', 'Montserrat', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      color: #e3d4ff;
-      letter-spacing: 0.1em;
-      line-height: 1.08;
+    .hero-title{
+      font-size: 3.25rem;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      filter: drop-shadow(0 0 18px #a88fd6);
-      text-align: left;
+      color: var(--white);
     }
-    .hero-content .lead {
-      color: #dcbcff;
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
-      text-shadow: none;
-      max-width: 600px;
+    .hero-title .accent{ color: var(--peach); }
+    .hero-sub{
+      color: rgba(209,232,226,0.88);
+      font-size: 1.18rem;
+      margin-top: 14px;
+      max-width: 670px;
+      line-height: 1.6;
     }
-    .btn-custom, .project-btn {
-      background: linear-gradient(95deg,#836fff 10%,#1d0841 80%);
-      color: #fff;
-      border: 2px solid #c0a9ff;
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .badge-pill{
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: rgba(44,53,49,0.40);
+      border: 1px solid rgba(209,232,226,0.14);
+      color: rgba(209,232,226,0.88);
+      font-weight: 900;
+      font-size: .92rem;
+    }
+
+    /* Professional photo shape */
+    .hero-photo-wrap{
+      width: 450px;
+      max-width: 94%;
+      margin: 0 auto;
+      position: relative;
+      padding: 16px;
+      border-radius: 28px;
+      background: rgba(44,53,49,0.45);
+      border: 1px solid rgba(209,232,226,0.16);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadowSoft);
+    }
+    .hero-photo{
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 22px;
+      display:block;
+      filter: contrast(1.05) saturate(1.03);
+    }
+    .photo-border{
+      position:absolute;
+      inset:-2px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(17,100,102,0.55), rgba(255,203,154,0.18));
+      filter: blur(18px);
+      z-index:-1;
+      opacity:.55;
+    }
+
+    /* Skills (ONLY skills with icons) */
+    .skills-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 18px 18px;
+    }
+    .skill-card{
+      width: 150px;
+      min-height: 118px;
       border-radius: 16px;
-      padding: 16px 36px;
-      font-weight: 800;
-      font-family: 'Orbitron', 'Montserrat', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      box-shadow: 0 0 24px #bb90ff45;
-      transition: background 0.28s, color 0.2s, box-shadow 0.3s, transform 0.22s;
-      margin-right: 0.5rem;
+      background: rgba(44,53,49,0.45);
+      border: 1px solid rgba(209,232,226,0.16);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding: 14px 12px;
+      transition: transform .18s, box-shadow .22s, filter .22s;
+      user-select:none;
     }
-    .btn-custom:hover, .project-btn:hover {
-      background: linear-gradient(95deg,#e1d7ff 5%,#5641ce 95%);
-      color: #290d55;
-      box-shadow: 0 0 36px #c8aaffac;
-      transform: scale(1.04) translateY(-2px);
+    .skill-card:hover{
+      transform: translateY(-3px);
+      box-shadow:
+        0 22px 55px rgba(0,0,0,0.40),
+        0 0 18px rgba(17,100,102,0.28);
+      filter: brightness(1.03);
     }
-
-    .hover-zoom { transition: transform 0.42s; }
-    .hover-zoom:hover {
-      transform: scale(1.09);
-      filter: drop-shadow(0 0 18px #bda5ff);
+    .skill-card img{
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 10px rgba(209,232,226,0.08));
     }
-
-    section {
-      padding: 68px 0 38px;
-      z-index: 0;
-      position: relative;
-    }
-    .bg-dark-glass {
-      position: relative;
-      z-index: 0;
-    }
-    .glass-box {
-      background: rgba(40, 30, 70, 0.80);
-      border-radius: 18px;
-      box-shadow: 0 7px 32px #ab75ff61, 0 0 25px #6828d820;
-      border: 1.5px solid #d5c1fa36;
-      color: #e7e6ff;
-      padding: 32px;
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.28s, transform 0.32s;
-    }
-    .glass-box:hover {
-      box-shadow: 0 18px 45px #594be8c1, 0 0 50px #c09aff99;
-      transform: translateY(-4px) scale(1.011);
-    }
-
-    h2, h3, h4 {
-      font-family: 'Orbitron', 'Montserrat', sans-serif;
-      color: #ede8ea;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin-bottom: 1.25rem;
-      text-shadow: 0 0 13px #c7b5fa5d;
-    }
-    h2 { font-size: 2.3rem; }
-    h3 { font-size: 1.8rem; }
-    h4 { font-size: 1.4rem; }
-
-    .about-section p {
-      color: #cfcffe;
-      font-size: 1.14rem;
-      max-width: 720px;
-      line-height: 1.7;
-      margin: 0 auto 1.2em;
-    }
-
-    /* Skill section */
-   .skill-category h4 {
-  border-bottom: 2.5px solid #b296ff;
-  display: inline-block;
-  padding-bottom: 11px;
-  margin-bottom: 30px; /* use only bottom margin here */
-  filter: drop-shadow(0 0 5px #991cff99);
-}
-.skill-category {
-  text-align: center;
-}
-
-
-
-    .skills-row {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 32px 24px;
-    }
-    .skill-icon {
-      border: 2px solid #ae90ec;
-      border-radius: 15px;
-      background: linear-gradient(120deg, #fdfdfd 100%, #ffffff 100%);
-      color: #ecd4ff;
-      height: 105px; width: 105px;
-      display: flex;
-      flex-direction: column; justify-content: center;
-      align-items: center; margin: 10px;
-      box-shadow: 0 0 13px #a287e438 inset;
-      transition: box-shadow 0.22s, transform 0.3s;
-      cursor: default;
-    }
-    .skill-icon:hover {
-      box-shadow: 0 0 28px #e5bdffb8, 0 0 25px #bf9bed60 inset;
-      transform: scale(1.09);
-    }
-    .skill-icon img {
-      max-width: 56px; max-height: 56px; margin-bottom: 10px;
-      filter: drop-shadow(0 0 6px #f0ecf362);
-    }
-    .skill-name {
-      font-weight: 700;
-      color: #3b1f64;
-      text-shadow: 0 0 4px #ab67fa5e;
-      font-size: 13.5px;
+    .skill-name{
+      font-weight: 900;
+      color: rgba(255,255,255,0.92);
+      font-size: 0.92rem;
+      text-align:center;
+      line-height: 1.2;
     }
 
     /* Projects */
-    .row.align-items-start {
-      background: #20144eab;
-      border-radius: 15px;
-      padding: 1.7rem 1.2rem;
-      margin-bottom: 2.2rem;
-      box-shadow: 0 0 24px #a082fd64;
-      transition: box-shadow 0.3s, background-color 0.3s;
+    .project-row{
+      background: rgba(44,53,49,0.45);
+      border: 1px solid rgba(209,232,226,0.16);
+      border-radius: var(--radius);
+      padding: 1.85rem 1.35rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadowSoft);
+      transition: transform .25s, box-shadow .25s;
     }
-    .row.align-items-start:hover {
-      background: #291c59da;
-      box-shadow: 0 0 56px #9476eebc;
-    }
-    .col-md-4.text-center img.img-fluid.rounded.hover-zoom {
-      height: 220px;
-      width: 320px;
+    .project-row:hover{ transform: translateY(-4px); box-shadow: var(--shadow); }
+    .project-img{
+      height: 240px;
+      width: 100%;
       object-fit: cover;
-      border: 1.8px solid #ede0ff;
-      border-radius: 0.8rem;
-      margin: 0 auto;
-      display: block;
-      box-shadow: 0 0 22px #4b30be5e;
-      filter: drop-shadow(0 0 8px #ceb5fd);
+      border: 1px solid rgba(209,232,226,0.16);
+      border-radius: 16px;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.35);
     }
-
-    /* Project tools */
-    .project-tools {
-      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; padding: 0;
+    .project-tools{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 0;
     }
-    .project-tools .tool-icon {
-      background: #382d5f80;
-      border: 1.8px solid #ad83fd95;
-      border-radius: 10px;
-      padding: 7px 16px;
-      color: #ebdbfa;
-      font-weight: 600;
+    .tool-icon{
+      background: rgba(44,53,49,0.45);
+      border: 1px solid rgba(209,232,226,0.16);
+      border-radius: 999px;
+      padding: 7px 14px;
+      color: rgba(209,232,226,0.92);
+      font-weight: 900;
       font-size: 13px;
-      display: flex; align-items: center; gap: 7px;
-      text-shadow: 0 0 2px #e0bffd;
-      user-select: none;
-      transition: box-shadow 0.2s, background 0.2s;
+      display:flex;
+      align-items:center;
+      gap: 7px;
+      user-select:none;
+      transition: transform .18s, box-shadow .18s, filter .18s;
     }
-    .project-tools .tool-icon img {
-      width: 20px; height: 20px;
-      filter: drop-shadow(0 0 2px #ceb5fd);
+    .tool-icon:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
     }
-    .project-tools .tool-icon:hover {
-      box-shadow: 0 0 18px #ded1fd;
-      background: #5b46a7d4;
-    }
+    .tool-icon img{ width: 18px; height: 18px; }
 
-    /* Contact Section */
-    #contact { margin-top: 100px; }
-    .contact-card {
-      background: radial-gradient(circle at 54% 60%, #301e65bb 45%, #151132 100%);
-      border: 2.2px solid #cdd9ff80;
-      color: #f6fbff;
-      box-shadow: 0 10px 28px #9481fe56;
+    /* Leadership timeline */
+    .timeline{ max-width: 980px; margin: 0 auto; }
+    .timeline-item{
+      position: relative;
+      padding: 22px 22px 22px 56px;
+      margin-bottom: 16px;
+      border-radius: var(--radius);
+      background: rgba(44,53,49,0.45);
+      border: 1px solid rgba(209,232,226,0.16);
+      box-shadow: var(--shadowSoft);
+    }
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      left: 20px;
+      top: 26px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--peach);
+      box-shadow: 0 0 18px rgba(255,203,154,0.20);
+    }
+    .timeline-role{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .timeline-role h5{
+      margin:0;
+      font-weight: 900;
+      color: var(--white);
+      text-transform:none;
+    }
+    .timeline-date{
+      font-weight: 900;
+      color: rgba(209,232,226,0.72);
+      font-size: 0.95rem;
+    }
+    .timeline-item p{ margin:0; color: rgba(209,232,226,0.88); line-height:1.6; }
+
+    /* Contact */
+    .contact-card{
+      background: rgba(44,53,49,0.45);
+      border: 1px solid rgba(209,232,226,0.16);
+      box-shadow: var(--shadowSoft);
       border-radius: 22px;
-      padding: 34px;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      backdrop-filter: blur(7px);
-      transition: box-shadow 0.3s, transform 0.3s, background 0.2s;
+      padding: 28px;
+      text-align:center;
+      user-select:none;
+      backdrop-filter: blur(16px);
+      transition: transform .18s, box-shadow .22s, filter .18s;
     }
-    .contact-card:hover {
-      box-shadow: 0 14px 41px #e6daf1a4;
-      transform: scale(1.09);
-      background: #4330a6b5;
+    .contact-card:hover{
+      transform: translateY(-3px) scale(1.05);
+      filter: brightness(1.05);
+      box-shadow:
+        0 22px 70px rgba(0,0,0,0.50),
+        0 0 18px rgba(17,100,102,0.35);
     }
-    .contact-icon i {
-      font-size: 36px;
-      color: #eedcff;
-      text-shadow: 0 0 14px #be9afd,0 0 8px #ffffff20;
-      transition: color 0.25s, transform 0.3s;
-    }
-    .contact-card:hover .contact-icon i {
-      color: #fff;
-      transform: scale(1.13);
+    .contact-icon i{
+      font-size: 34px;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 0 14px rgba(17,100,102,0.35);
     }
 
-    /* Responsive stuff */
     @media (max-width: 991.98px) {
-      .col-md-4.text-center img.img-fluid.rounded.hover-zoom {
-        width: 100%; height: auto;
-      }
-      .hero-content h1 { font-size: 2.1rem; }
-      .btn-custom, .project-btn { padding: 11px 18px; border-radius: 12px; }
-      .skill-icon { height: 88px; width: 88px; }
+      .hero-title{ font-size: 2.25rem; }
+      .hero-photo{ height: 300px; }
+      .project-img{ height: 220px; }
+      .skill-card{ width: 140px; }
     }
-    html, body {
-  /* ... */
-  font-family: 'Quicksand', 'Montserrat', 'Segoe UI', sans-serif;
-  /* or substitute: 'Nunito', 'Poppins', etc. */
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Quicksand', 'Montserrat', 'Segoe UI', sans-serif;
-}
-
-
-h2::after, h3::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  margin: 8px auto 0;
-  background: linear-gradient(to right, #a98fff, #6a4ecb);
-  box-shadow: 0 0 6px #ab8fff;
-  border-radius: 20px;
-}
-.entry-heading {
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #e8dbff;
-  letter-spacing: 0.07em;
-  margin-bottom: 4px;
-  text-shadow: 0 0 6px #b695ff90;
-  filter: drop-shadow(0 0 2px #bb9efc66);
-  font-family: 'Orbitron', 'Montserrat', sans-serif;
-}
-.glass-about {
-  background: linear-gradient(135deg, rgba(77, 67, 119, 0.3), rgba(82, 8, 107, 0.45));
-  border-radius: 50px;
-  border: 1.5px solid rgba(130, 84, 221, 0.28);
-  box-shadow: 0 0 30px rgba(152, 127, 232, 0.25), 0 0 20px rgba(115, 83, 232, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  color: #dfd6ff;
-  font-size: 1.08rem;
-  line-height: 1.7;
-  text-shadow: 0 0 4px #2a165340;
-  transition: box-shadow 0.3s ease-in-out;
-}
-.glass-about:hover {
-  box-shadow: 0 0 60px rgba(198, 175, 247, 0.5);
-}
-
-
   </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
-  
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="110">
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container px-4 px-md-5">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-  <img src="images/logo.jpg" alt="Logo" width="60" height="60" class="rounded-circle" />
-  <span class="brand-name">STUTI MEHTA</span>
-</a>
+      <a class="navbar-brand" href="#home">STUTI MEHTA</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-center">
           <li class="nav-item">
-            <a class="nav-link resume-btn btn" href="resume.pdf" target="_blank">Download Resume</a>
+            <a class="nav-link btn-custom" style="padding:10px 14px; border-radius:14px;" href="resume.pdf" target="_blank">Download Resume</a>
           </li>
           <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -388,270 +436,364 @@ h2::after, h3::after {
   </nav>
 
   <!-- HOME -->
-  <section id="home" class="hero-section text-white">
-    <div class="container hero-content text-center">
+  <section id="home" class="hero-section">
+    <div class="container px-4 px-md-5">
       <div class="row align-items-center">
-        <div class="col-md-7 text-md-start" data-aos="fade-right">
-          <h1>Hello!<br />I’m Stuti</h1>
-          <p class="lead" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
-            A Business Analytics & AI enthusiast building elegant, data-driven solutions.
-          </p>
-          <a href="#about" class="btn btn-custom btn-lg mt-4">Discover My Story</a>
+        <div class="col-md-7 text-md-start text-center" data-aos="fade-right">
+          <div class="hero-title">
+            Stuti <span class="accent">Mehta</span>
+          </div>
+          <div class="hero-sub">
+            Business Analytics & AI | Turning data into decisions with predictive modeling, dashboards, and clear product strategy.
+          </div>
+
+          <div class="hero-badges">
+            <div class="badge-pill">Strategic Analytics</div>
+            <div class="badge-pill">SQL • Power BI • Python</div>
+            <div class="badge-pill">Research • KPI Frameworks • Storytelling</div>
+          </div>
+
+          <div class="mt-4">
+            <a href="#about" class="btn-custom btn-lg me-2">Know More About Me</a>
+            <a href="#contact" class="btn-custom btn-lg btn-outline-soft">Contact</a>
+          </div>
         </div>
+
         <div class="col-md-5 mt-4 mt-md-0 text-center" data-aos="fade-left">
-          <img src="images/photo.jpg" alt="Stuti Mehta" class="img-fluid rounded hover-zoom" style="max-height: 300px;" />
+          <div class="hero-photo-wrap">
+            <div class="photo-border"></div>
+            <img src="images/photo.png" alt="Stuti Mehta" class="hero-photo" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="bg-dark-glass" style="padding-top:98px; margin-top: -98px;">
+  <section id="about" style="padding-top:110px; margin-top:-110px;">
     <div class="container px-4 px-md-5">
-      <div class="text-center mb-6 mt-5" data-aos="fade-up">
-        <h2 class="fw-bold" data-aos="fade-up" data-aos-delay="100">Who Am I?</h2>
-        <div class="glass-about text-start p-4 p-md-5" data-aos="fade-up" data-aos-delay="150" style="max-width:880px; margin:auto;">
-  <p>Hey there! I’m Stuti—a Business Analytics and AI grad student at UT Dallas, but honestly, I see myself as more than just a numbers person. I get genuinely thrilled when I find patterns in messy datasets or when a dashboard finally brings complex information to life. But for me, analytics has always been about more than just crunching numbers; it’s about uncovering the real stories behind the data.</p>
-  <p>I love learning new things and diving into fresh experiences, whether that means mastering new tech tools or stepping up to organize events. What truly excites me is hearing about people’s journeys and what fuels their passions. Every person I meet has a unique story, and I deeply enjoy connecting, exchanging ideas, and sometimes simply listening.</p>
-  <p>Outside of building models or analyzing data trends, you’ll often find me trying things outside my comfort zone, volunteering, or participating in university activities. Curiosity is a fundamental part of who I am—it keeps me exploring, growing, and always seeking those moments when numbers meet human stories. So if you’re searching for someone as interested in people as she is in analytics, and who never says no to a good conversation or collaboration, let’s get in touch!</p>
-</div>
-
+      <div class="section-head" data-aos="fade-up">
+        <div class="kicker">Profile</div>
+        <h2>About <span>Me</span></h2>
+        <p>I translate data into decisions—through models, dashboards, and structured strategies that stakeholders can execute.</p>
       </div>
+
+      <div class="glass-about glass-box p-4 p-md-5" data-aos="fade-up" data-aos-delay="120">
+        <p>
+          I’m currently pursuing an MS in Business Analytics & AI, where I’m building expertise in predictive, prescriptive, and time series analytics. Alongside advanced data modeling, I’m also developing strong foundations in product and project management — understanding how data translates into strategy, execution, and measurable impact.
+        </p>
+        <p class="mb-0">
+          Beyond academics, I actively contribute to my university community through the Project Management Club (PMC), where I support initiatives that drive collaboration, leadership, and meaningful student engagement.
+        </p>
+      </div>
+
       <!-- Education -->
-      <div class="mb-5 mt-5" data-aos="fade-up" data-aos-delay="100">
-    <h3 class="fw-bold text-center mb-4" data-aos="fade-up" data-aos-delay="100">Education</h3>
-        <div class="glass-box mb-5 mt-5 row align-items-center">
+      <div class="mt-5" data-aos="fade-up">
+        <div class="section-head">
+          <div class="kicker">Credentials</div>
+          <h2>Edu<span>cation</span></h2>
+        </div>
+
+        <div class="glass-box mb-4 row align-items-center">
           <div class="col-md-2 text-center">
             <img src="images/utd-logo.png" alt="UT Dallas" class="img-fluid" style="max-height: 70px;">
           </div>
           <div class="col-md-10">
-            <h5 class="entry-heading">University of Texas at Dallas</h5>
-            <p style="font-weight:600;">MS in Business Analytics & Artificial Intelligence</p>
-            <p>Relevant Coursework: Data Visualization, Predictive Modeling, AI Strategy</p>
+            <div class="entry-heading">University of Texas at Dallas</div>
+            <p class="mb-1" style="font-weight:900;">MS in Business Analytics & Artificial Intelligence</p>
+            <p class="mb-0" style="color:var(--muted);">Coursework:Data Modeling, Statistical Analysis, Time Series Analytics, Applied Econometrics, Predictive Analytics, Prescriptive Analytics, Machine Learning for Business, Business Intelligence & Data Visualization, Optimization Methods, Product & Project Management, Data Visualization, Predictive Modeling, AI Strategy</p>
           </div>
         </div>
+
         <div class="glass-box row align-items-center">
           <div class="col-md-2 text-center">
             <img src="images/indus-logo.png" alt="Indus University" class="img-fluid" style="max-height:70px;">
           </div>
           <div class="col-md-10">
-            <h5 class="entry-heading">Indus University</h5>
-
-            <p style="font-weight:600;">B.Tech in Computer Science and Engineering</p>
-            <p>Relevant Coursework: Machine Learning, DBMS, Cloud Computing</p>
+            <div class="entry-heading">Indus University</div>
+            <p class="mb-1" style="font-weight:900;">B.Tech in Computer Science and Engineering</p>
+            <p class="mb-0" style="color:var(--muted);">Coursework: Data Structures & Algorithms (DSA), Artificial Intelligence, Software Engineering, Machine Learning, DBMS, Cloud Computing</p>
           </div>
         </div>
       </div>
+
       <!-- Experience -->
-      <div class="mb-5" data-aos="fade-up" data-aos-delay="300">
-        <h3 class="fw-bold text-center mb-4" data-aos="fade-up" data-aos-delay="300">Experience</h3>
+      <div class="mt-5" data-aos="fade-up">
+        <div class="section-head">
+          <div class="kicker">Industry</div>
+          <h2>Expe<span>rience</span></h2>
+        </div>
+
         <div class="glass-box row align-items-center mb-4">
-  <div class="col-md-2 text-center">
-    <img src="images/olive1-logo.jpeg" alt="Olive" class="img-fluid" style="max-height: 70px;">
-  </div>
-  <div class="col-md-10">
-    <h5 class="entry-heading">Olive Web Solutions – Data Analyst Intern</h5>
-    <ul style="font-weight:500; padding-left: 1.2rem; max-width: 680px; margin: 0;">
-      <li>Analyzed and cleaned large datasets in Excel using advanced functions (pivot tables, VLOOKUP, and charts) to uncover trends and support data-driven decision-making.</li>
-      <li>Performed SEO audits, conducted keyword research, and monitored website analytics using Google Analytics to optimize digital marketing strategies.</li>
-      <li>Created detailed performance reports with actionable insights to improve content visibility and website traffic.</li>
-      <li>Collaborated with marketing and content teams to enhance user engagement and drive business growth.</li>
-    </ul>
-  </div>
-</div>
+          <div class="col-md-2 text-center">
+            <img src="images/olive1-logo.jpeg" alt="Olive" class="img-fluid" style="max-height: 70px;">
+          </div>
+          <div class="col-md-10">
+            <div class="entry-heading">Olive Web Solutions — Data Analyst Intern</div>
+            <ul style="font-weight:800; padding-left: 1.2rem; max-width: 820px; margin: 0; color: rgba(209,232,226,0.92);">
+              
+               <li>Led experimentation initiatives by designing and analyzing A/B tests, translating statistical findings into product and growth recommendations that improved conversion performance.</li>
+              <li>Built KPI frameworks and automated reporting dashboards to track product performance, user engagement, and marketing efficiency across multiple campaigns.</li>
+              <li>Collaborated with product managers to refine feature requirements using behavioral data, ensuring decisions were grounded in measurable customer insights.</li>
+            </ul>
+          </div>
+        </div>
 
-<div class="glass-box row align-items-center mb-4">
-  <div class="col-md-2 text-center">
-    <img src="images/silicon-logo.jpeg" alt="Silicon IT Hub" class="img-fluid" style="max-height: 70px;">
-  </div>
-  <div class="col-md-10">
-        <h5 class="entry-heading">Silicon IT Hub – Business Analyst Intern</h5>
-    <ul style="font-weight:500; padding-left: 1.2rem; max-width: 680px; margin: 0;">
-      <li>Collaborated with cross-functional teams to deliver projects in e-commerce, cab booking, and real estate.</li>
-      <li>Gathered and documented client requirements; created comprehensive feature lists for admin, customer, and seller modules.</li>
-      <li>Designed user flow diagrams and interactive wireframes in Lucidchart to visualize and refine processes.</li>
-      <li>Prepared Statements of Work (SOWs) and coordinated communication between stakeholders, developers, and designers throughout the project lifecycle.</li>
-    </ul>
-  </div>
-</div>
-  <div class="text-center mt-5">
-        <a href="#skills" class="btn btn-custom btn-lg">Discover My Skills</a>
+        <div class="glass-box row align-items-center mb-2">
+          <div class="col-md-2 text-center">
+            <img src="images/silicon-logo.jpeg" alt="Silicon IT Hub" class="img-fluid" style="max-height: 70px;">
+          </div>
+          <div class="col-md-10">
+            <div class="entry-heading">Silicon IT Hub — Business Analyst Intern</div>
+            <ul style="font-weight:800; padding-left: 1.2rem; max-width: 820px; margin: 0; color: rgba(209,232,226,0.92);">
+             <li>Drove product decision-making by defining success metrics, building SQL-based data models, and developing executive dashboards that informed roadmap prioritization and feature investments.</li>
+              <li>Conducted deep-dive analyses on customer behavior and funnel performance, identifying optimization opportunities that improved activation and retention strategies.</li>
+              <li>Partnered cross-functionally with product, engineering, and operations teams to translate analytical insights into structured execution plans and measurable business outcomes.</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
-
-  <!-- SKILLS -->
-  <section id="skills" class="bg-dark-glass" style="padding-top:95px; margin-top:-95px;">
+  <!-- SKILLS (ONLY WITH ICONS) -->
+  <section id="skills" style="padding-top:110px; margin-top:-110px;">
     <div class="container px-4 px-md-5">
-      <h2 class="text-center mb-5">My Skills</h2>
-      <div class="skill-category" data-aos="fade-up">
-        <h4 class="text-center mb-4 mt-3">Programming Languages</h4>
-        <div class="skills-row">
-          <div class="skill-icon"><img src="images/skills/c.png" alt="C"><div class="skill-name">C</div></div>
-          <div class="skill-icon"><img src="images/skills/c++.png" alt="C++"><div class="skill-name">C++</div></div>
-          <div class="skill-icon"><img src="images/skills/java.png" alt="Java"><div class="skill-name">Java</div></div>
-          <div class="skill-icon"><img src="images/skills/Javascript.png" alt="JavaScript"><div class="skill-name">JavaScript</div></div>
-        </div>
-        <div class="skills-row">
-          <div class="skill-icon"><img src="images/skills/html.png" alt="HTML"><div class="skill-name">HTML</div></div>
-          <div class="skill-icon"><img src="images/skills/css.png" alt="CSS"><div class="skill-name">CSS</div></div>
-          <div class="skill-icon"><img src="images/skills/R.png" alt="R"><div class="skill-name">R</div></div>
-          <div class="skill-icon"><img src="images/skills/python.png" alt="Python"><div class="skill-name">Python</div></div>
-        </div>
+      <div class="section-head" data-aos="fade-up">
+        <div class="kicker">Toolkit</div>
+        <h2>Skil<span>ls</span></h2>
+        <p>Only skills with icons included (as requested).</p>
       </div>
-      <div class="skill-category" data-aos="fade-up" data-aos-delay="110">
-        <h4 class="text-center mb-4 mt-5">Data Visualization</h4>
-        <div class="skills-row">
-          <div class="skill-icon"><img src="images/skills/powerbi.png" alt="Power BI"><div class="skill-name">Power BI</div></div>
-          <div class="skill-icon"><img src="images/skills/Tableau.png" alt="Tableau"><div class="skill-name">Tableau</div></div>
-          <div class="skill-icon"><img src="images/skills/advanced excel.jpg" alt="Advanced Excel"><div class="skill-name">Advanced Excel</div></div>
-        </div>
-      </div>
-      <div class="skill-category" data-aos="fade-up" data-aos-delay="160">
-        <h4 class="text-center mb-4 mt-5">Database and Querying</h4>
-        <div class="skills-row">
-          <div class="skill-icon"><img src="images/skills/sql.png" alt="SQL"><div class="skill-name">SQL</div></div>
-          <div class="skill-icon"><img src="images/skills/mysql.png" alt="MySQL"><div class="skill-name">MySQL</div></div>
-          <div class="skill-icon"><img src="images/skills/mongodb.png" alt="MongoDB"><div class="skill-name">MongoDB</div></div>
-        </div>
-      </div>
-      <div class="skill-category" data-aos="fade-up" data-aos-delay="210">
-         <h4 class="text-center mb-4 mt-5">Business Analysis and Project Tools</h4>
 
-        <div class="skills-row">
-          <div class="skill-icon"><img src="images/skills/jira.png" alt="JIRA"><div class="skill-name">JIRA</div></div>
-          <div class="skill-icon"><img src="images/skills/draw.io.png" alt="Draw.io"><div class="skill-name">Draw.io</div></div>
-          <div class="skill-icon"><img src="images/skills/lucidchart.png" alt="Lucidchart"><div class="skill-name">Lucid Chart</div></div>
-        </div>
+      <div class="skills-row" data-aos="fade-up">
+        <div class="skill-card"><img src="images/skills/python.png" alt="Python"><div class="skill-name">Python</div></div>
+        <div class="skill-card"><img src="images/skills/R.png" alt="R"><div class="skill-name">R</div></div>
+        <div class="skill-card"><img src="images/skills/sql.png" alt="SQL"><div class="skill-name">SQL</div></div>
+
+        <div class="skill-card"><img src="images/skills/powerbi.png" alt="Power BI"><div class="skill-name">Power BI</div></div>
+        <div class="skill-card"><img src="images/skills/Tableau.png" alt="Tableau"><div class="skill-name">Tableau</div></div>
+        <div class="skill-card"><img src="images/skills/advanced excel.jpg" alt="Excel (Advanced)"><div class="skill-name">Excel (Advanced)</div></div>
+
+        <div class="skill-card"><img src="images/skills/tensorflow.png" alt="TensorFlow"><div class="skill-name">TensorFlow</div></div>
+
+        <div class="skill-card"><img src="images/skills/mysql.png" alt="MySQL"><div class="skill-name">MySQL</div></div>
+        <div class="skill-card"><img src="images/skills/mongodb.png" alt="MongoDB"><div class="skill-name">MongoDB</div></div>
+
+        <div class="skill-card"><img src="images/skills/jira.png" alt="Jira"><div class="skill-name">Jira</div></div>
       </div>
-      <div class="text-center mb-4 mt-5">
-        <a href="#projects" class="btn btn-custom btn-lg">Discover My Projects</a>
+
+      
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership" style="padding-top:110px; margin-top:-110px;">
+    <div class="container px-4 px-md-5">
+      <div class="section-head" data-aos="fade-up">
+        <div class="kicker">Impact</div>
+        <h2>Leade<span>rship</span></h2>
+        <p>Roles where I built stakeholder alignment, ran events, and delivered consistent execution.</p>
+      </div>
+
+      <div class="timeline" data-aos="fade-up">
+        <div class="timeline-item">
+          <div class="timeline-role">
+            <h5>UTDesign — Student Assistant (Procurement & Corporate Relations)</h5>
+            <div class="timeline-date">Sep 2025 – Present</div>
+          </div>
+          <p>Support procurement and corporate relations, coordinate sponsor communication, and manage event logistics for senior/final-year expos.</p>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="timeline-role">
+            <h5>Project Management Club — Social Media & Design Officer</h5>
+            <div class="timeline-date">Spring 2026</div>
+          </div>
+          <p>Lead marketing and promotions, create content and visuals, and deliver crisp copy for events and announcements.</p>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="120">
+          <div class="timeline-role">
+            <h5>Interconnect — Event Coordinator</h5>
+            <div class="timeline-date">2021</div>
+          </div>
+          <p>Coordinated event execution and supported planning, communication, and on-ground operations with the organizing team.</p>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="180">
+          <div class="timeline-role">
+            <h5>Class Representative (B.Tech)</h5>
+            <div class="timeline-date">Undergraduate</div>
+          </div>
+          <p>Acted as a bridge between students and professors—communicated updates, resolved issues, and supported coordination.</p>
+        </div>
       </div>
     </div>
   </section>
-<!-- PROJECTS -->
-<section id="projects" class="glass-box my-5">
-  <div class="container px-4 px-md-5">
-    <h2 class="text-center">My Projects</h2>
 
-    <!-- Project 1 -->
-    <div class="row align-items-start mb-5">
-      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up">
-        <h3>Emotion Detection Using CNN</h3>
-        <p>This project develops a Convolutional Neural Network (CNN) to detect and classify human emotions from facial images. Using the FER-2013 dataset, the model identifies emotions such as happiness, sadness, anger, surprise, and others. The system leverages deep learning techniques and image processing tools to accurately recognize emotions from facial expressions, with potential applications in human-computer interaction, security, and healthcare.</p>
-        <a href="#" class="project-btn mt-auto">VIEW CODE</a>
+  <!-- PROJECTS -->
+  <section id="projects" style="padding-top:110px; margin-top:-110px;">
+    <div class="container px-4 px-md-5">
+      <div class="section-head" data-aos="fade-up">
+        <div class="kicker">Work</div>
+        <h2>Proj<span>ects</span></h2>
+        <p>Clean, high-signal summaries + tool stacks. No “view code” buttons.</p>
       </div>
-      <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
-        <img src="images/projects/1.png" alt="Emotion Detection CNN Project" class="img-fluid rounded hover-zoom" />
-      </div>
-      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up" data-aos-delay="200">
-        <h5>Tools Used</h5>
-        <div class="project-tools mt-auto">
-          <div class="tool-icon"><img src="images/skills/python.png" alt="Python"/> Python</div>
-          <div class="tool-icon"><img src="images/skills/tensorflow.png" alt="TensorFlow"/> TensorFlow</div>
-          <div class="tool-icon"><img src="images/skills/keras.png" alt="Keras"/> Keras</div>
-          <div class="tool-icon"><img src="images/skills/opencv.png" alt="OpenCV"/> OpenCV</div>
-          <div class="tool-icon"><img src="images/skills/matplotlib.png" alt="Matplotlib"/> Matplotlib</div>
-          <div class="tool-icon"><img src="images/skills/html.png" alt="HTML"/> HTML</div>
-          <div class="tool-icon"><img src="images/skills/css.png" alt="CSS"/> CSS</div>
-          <div class="tool-icon"><img src="images/skills/javascript.png" alt="JavaScript"/> JavaScript</div>
+
+      <!-- Project 1 -->
+      <div class="project-row" data-aos="fade-up">
+        <div class="row align-items-center g-4">
+          <div class="col-md-5">
+            <h3 style="font-weight:900;color:var(--white);">Emotion Detection Using CNN</h3>
+            <p style="color:rgba(209,232,226,0.88);">
+            <ul>
+  <li>Developed a deep learning-based emotion recognition model to classify facial expressions into multiple emotional categories using image datasets.</li>
+  <li>Built and trained a Convolutional Neural Network (CNN) with optimized preprocessing and hyperparameter tuning to improve classification performance.</li>
+  <li>Designed the system for real-time prediction capability, demonstrating applications in user experience personalization, behavioral analytics, and human-computer interaction.</li>
+</ul>
+            </p>
+            <h5 class="mt-3" style="font-weight:900;color:var(--white);">Tools Used</h5>
+            <div class="project-tools">
+              <div class="tool-icon"><img src="images/skills/python.png" alt="Python"/> Python</div>
+              <div class="tool-icon"><img src="images/skills/tensorflow.png" alt="TensorFlow"/> TensorFlow</div>
+              <div class="tool-icon"><img src="images/skills/keras.png" alt="Keras"/> Keras</div>
+              <div class="tool-icon"><img src="images/skills/opencv.png" alt="OpenCV"/> OpenCV</div>
+              <div class="tool-icon"><img src="images/skills/matplotlib.png" alt="Matplotlib"/> Matplotlib</div>
+            </div>
+          </div>
+          <div class="col-md-7 text-center">
+            <img src="images/projects/1.png" alt="Emotion Detection Project" class="project-img" />
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Project 2 -->
-    <div class="row align-items-start mb-5">
-      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up">
-        <h3>Plant Disease Detection with AI/ML</h3>
-        <p>This project uses Convolutional Neural Networks (CNN) to detect and classify diseases in plants by analyzing images of leaves. Leveraging the Plant Village dataset, the system helps agricultural professionals and farmers quickly diagnose plant diseases to enable timely treatment and prevent crop loss. It includes preprocessing steps and a web interface built with Flask for user-friendly disease identification.</p>
-        <a href="#" class="project-btn mt-auto">VIEW CODE</a>
-      </div>
-      <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
-        <img src="images/projects/2.jpg" alt="Plant Disease Detection Project" class="img-fluid rounded hover-zoom" />
-      </div>
-      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up" data-aos-delay="200">
-        <h5>Tools Used</h5>
-        <div class="project-tools mt-auto">
-          <div class="tool-icon"><img src="images/skills/python.png" alt="Python"/> Python</div>
-          <div class="tool-icon"><img src="images/skills/tensorflow.png" alt="TensorFlow"/> TensorFlow</div>
-          <div class="tool-icon"><img src="images/skills/keras.png" alt="Keras"/> Keras</div>
-          <div class="tool-icon"><img src="images/skills/opencv.png" alt="OpenCV"/> OpenCV</div>
-          <div class="tool-icon"><img src="images/skills/flask.png" alt="Flask"/> Flask</div>
+      <!-- Project 2 -->
+      <div class="project-row" data-aos="fade-up">
+        <div class="row align-items-center g-4">
+          <div class="col-md-5">
+            <h3 style="font-weight:900;color:var(--white);">Plant Disease Detection with AI/ML</h3>
+            <p style="color:rgba(209,232,226,0.88);">
+            <ul>
+  <li>Developed a Convolutional Neural Network (CNN) model achieving 92% classification accuracy for plant disease detection using image datasets.</li>
+  <li>Engineered an end-to-end machine learning pipeline including preprocessing, model tuning, validation, and deployment using Flask and AWS.</li>
+  <li>Designed the solution with a user-centric approach, enabling scalable real-time predictions to support informed agricultural decision-making.</li>
+</ul>
+            </p>
+            <h5 class="mt-3" style="font-weight:900;color:var(--white);">Tools Used</h5>
+            <div class="project-tools">
+              <div class="tool-icon"><img src="images/skills/python.png" alt="Python"/> Python</div>
+              <div class="tool-icon"><img src="images/skills/tensorflow.png" alt="TensorFlow"/> TensorFlow</div>
+              <div class="tool-icon"><img src="images/skills/keras.png" alt="Keras"/> Keras</div>
+              <div class="tool-icon"><img src="images/skills/opencv.png" alt="OpenCV"/> OpenCV</div>
+              <div class="tool-icon"><img src="images/skills/flask.png" alt="Flask"/> Flask</div>
+            </div>
+          </div>
+          <div class="col-md-7 text-center">
+            <img src="images/projects/2.jpg" alt="Plant Disease Project" class="project-img" />
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Project 3 -->
-    <div class="row align-items-start mb-5">
-      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up">
-        <h3>Business Insights 360 – Power BI Dashboard for AtliQ Hardware</h3>
-        <p>Business Insights 360 is a comprehensive Power BI dashboard developed using sales data from AtliQ Hardware to provide a 360° view of business performance. This project transforms raw sales data into clear, actionable insights through interactive visualizations and custom KPIs. Key metrics such as total revenue, gross profit, year-over-year growth, monthly sales trends, top-performing products, and regional performance are tracked. The dashboard supports multiple stakeholders with finance, sales, marketing, supply chain, and executive views. By leveraging advanced data modeling, DAX calculations, and data transformation techniques, it empowers better decision-making across departments.</p>
-        <a href="#" class="project-btn mt-auto">VIEW CODE</a>
-      </div>
-      <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
-        <img src="images/projects/3.png" alt="Business Insights 360 Power BI Project" class="img-fluid rounded hover-zoom" />
-      </div>
-      <div class="col-md-4 d-flex flex-column h-100" data-aos="fade-up" data-aos-delay="200">
-        <h5>Tools Used</h5>
-        <div class="project-tools mt-auto">
-          <div class="tool-icon"><img src="images/skills/powerbi.png" alt="Power BI"/> Power BI</div>
-          <div class="tool-icon"><img src="images/skills/excel.png" alt="Excel"/> Excel</div>
-          <div class="tool-icon"><img src="images/skills/powerquery.png" alt="Power Query (M)"/> Power Query (M)</div>
-          <div class="tool-icon"><img src="images/skills/dax.png" alt="DAX"/> DAX</div>
-          <div class="tool-icon"><img src="images/skills/sql.png" alt="SQL"/> SQL</div>
+      <!-- Project 3 -->
+      <div class="project-row" data-aos="fade-up">
+        <div class="row align-items-center g-4">
+          <div class="col-md-5">
+            <h3 style="font-weight:900;color:var(--white);">Business Insights 360 — Power BI Dashboard</h3>
+            <p style="color:rgba(209,232,226,0.88);">
+               <li>Designed and deployed an interactive Power BI dashboard analyzing 1.4M+ records to track revenue trends, operational KPIs, and performance drivers across business units.</li>
+               <li>structured data models and optimized SQL queries to improve reporting efficiency and enable real-time executive decision-making.</li> 
+<li>Translated complex datasets into executive-ready insights, helping stakeholders identify growth opportunities and operational bottlenecks.</li>
+
+            </p>
+            <h5 class="mt-3" style="font-weight:900;color:var(--white);">Tools Used</h5>
+            <div class="project-tools">
+              <div class="tool-icon"><img src="images/skills/powerbi.png" alt="Power BI"/> Power BI</div>
+              <div class="tool-icon"><img src="images/skills/powerquery.png" alt="Power Query"/> Power Query (M)</div>
+              <div class="tool-icon"><img src="images/skills/dax.png" alt="DAX"/> DAX</div>
+              <div class="tool-icon"><img src="images/skills/sql.png" alt="SQL"/> SQL</div>
+            </div>
+          </div>
+          <div class="col-md-7 text-center">
+            <img src="images/projects/3.png" alt="Power BI Dashboard Project" class="project-img" />
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
+      <!-- Project 4 (R ONLY + IMAGE REQUIRED) -->
+      <div class="project-row" data-aos="fade-up">
+        <div class="row align-items-center g-4">
+          <div class="col-md-5">
+            <h3 style="font-weight:900;color:var(--white);">Used Car Resale Price Analysis & Predictive Modeling</h3>
+            <ul style="color:rgba(209,232,226,0.88); font-weight:800; padding-left: 1.2rem;">
+              <li>Developed predictive pricing models in R (log-linear regression and neural networks) explaining ~70% of price variation with ~4–7% error.</li>
+              <li>Engineered features and used statistical selection to identify 8 key pricing drivers and communicate insights to stakeholders.</li>
+              <li>Validated models on unseen data and translated results into actionable pricing recommendations.</li>
+            </ul>
+            <h5 class="mt-3" style="font-weight:900;color:var(--white);">Tools Used</h5>
+            <div class="project-tools">
+              <div class="tool-icon"><img src="images/skills/R.png" alt="R"/> R</div>
+            </div>
+          </div>
+          <div class="col-md-7 text-center">
+            <!-- Put your image here: images/projects/4.png -->
+            <img src="images/projects/4.png" alt="Used Car Price Modeling Project" class="project-img" />
+          </div>
+        </div>
+      </div>
 
+      <!-- Project 5 (CareLoom + IMAGE REQUIRED) -->
+      <div class="project-row" data-aos="fade-up">
+        <div class="row align-items-center g-4">
+          <div class="col-md-5">
+            <h3 style="font-weight:900;color:var(--white);">CareLoom — Context-Aware Coordination App (Product Management)</h3>
+            <ul style="color:rgba(209,232,226,0.88); font-weight:800; padding-left: 1.2rem;">
+              <li>Conducted user research, persona development, and competitive analysis to define segments, value props, and positioning.</li>
+              <li>Established engagement metrics and measurement frameworks to evaluate adoption, retention, and experience effectiveness.</li>
+              <li>Delivered go-to-market insights and stakeholder-ready documentation and presentation decks.</li>
+            </ul>
+            <h5 class="mt-3" style="font-weight:900;color:var(--white);">Tools Used</h5>
+            <div class="project-tools">
+              <div class="tool-icon"><img src="images/skills/advanced excel.jpg" alt="Excel"/> Excel (Advanced)</div>
+              <div class="tool-icon"><img src="images/skills/jira.png" alt="Jira"/> Jira</div>
+              <!-- PowerPoint icon removed because you asked: only skills/tools with icons -->
+            </div>
+          </div>
+          <div class="col-md-7 text-center">
+            <!-- Put your image here: images/projects/5.png -->
+            <img src="images/projects/5.png" alt="CareLoom Product Management Project" class="project-img" />
+          </div>
+        </div>
+      </div>
 
-      <div class="text-center mt-5">
-        <a href="#contact" class="btn btn-custom btn-lg">Contact Me</a>
+      <div class="text-center mt-4">
+        <a href="#contact" class="btn-custom btn-lg">Contact Me</a>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="bg-dark-glass">
+  <section id="contact">
     <div class="container py-5 px-4 px-md-5" data-aos="fade-up">
-      <h2 class="text-center mb-5">Let's Connect</h2>
+      <div class="section-head">
+        <div class="kicker">Reach Out</div>
+        <h2>Con<span>tact</span></h2>
+        <p>Fastest response: LinkedIn or Email.</p>
+      </div>
+
       <div class="row g-4 justify-content-center">
         <div class="col-md-2 col-4">
           <a href="https://www.linkedin.com/in/stuti-mehta-459183225/" target="_blank" rel="noopener noreferrer">
-            <div class="contact-card" role="button">
-              <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-            </div>
+            <div class="contact-card" role="button"><div class="contact-icon"><i class="fab fa-linkedin"></i></div></div>
           </a>
         </div>
         <div class="col-md-2 col-4">
           <a href="mailto:stuti.mehta1909@gmail.com">
-            <div class="contact-card" role="button">
-              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            </div>
+            <div class="contact-card" role="button"><div class="contact-icon"><i class="fas fa-envelope"></i></div></div>
           </a>
         </div>
         <div class="col-md-2 col-4">
           <a href="https://github.com/stutimehta19" target="_blank" rel="noopener noreferrer">
-            <div class="contact-card" role="button">
-              <div class="contact-icon"><i class="fab fa-github"></i></div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 col-4">
-          <a href="https://www.instagram.com/stuti_mehta19" target="_blank" rel="noopener noreferrer">
-            <div class="contact-card" role="button">
-              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-2 col-4">
-          <a href="https://x.com/SMehtasm19" target="_blank" rel="noopener noreferrer">
-            <div class="contact-card" role="button">
-              <div class="contact-icon"><i class="fab fa-x-twitter"></i></div>
-            </div>
+            <div class="contact-card" role="button"><div class="contact-icon"><i class="fab fa-github"></i></div></div>
           </a>
         </div>
       </div>
@@ -663,7 +805,7 @@ h2::after, h3::after {
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      AOS.init({ duration: 900, offset: 80, once: true });
+      AOS.init({ duration: 900, offset: 90, once: true });
     });
   </script>
 </body>
